@@ -1,4 +1,4 @@
-# AWS Setup Guide — Auto-Scaling Controller
+# AWS Setup Guide
 
 Guía completa: infraestructura desde cero en la consola de AWS, ejecución
 del controller.
