@@ -126,7 +126,7 @@ completa de mínimo privilegio está documentada en `AWS_SETUP_GUIDE.md`.
 ├── .gitignore              
 ├── AWS_SETUP_GUIDE.md       # instrucciones de despliegue de infra
 ├── DELIVERABLES.md          
-└── ImagesEvidencias
+└── Evidencias
 ```
  
 ### 2.2 Infraestructura (definida vía consola AWS, documentada en `AWS_SETUP_GUIDE.md`)
