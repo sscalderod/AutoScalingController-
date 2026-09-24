@@ -125,7 +125,7 @@ completa de mínimo privilegio está documentada en `AWS_SETUP_GUIDE.md`.
 ├── requirements.txt        # boto3
 ├── .gitignore              
 ├── AWS_SETUP_GUIDE.md       # instrucciones de despliegue de infra
-├── DELIVERABLES.md          
+├── Deliverables.md          
 └── Evidencias
 ```
  
