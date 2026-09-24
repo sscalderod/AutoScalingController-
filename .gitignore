@@ -3,3 +3,4 @@ __pycache__/
 state.json
 decisions.log
 .env
+.DS_Store
