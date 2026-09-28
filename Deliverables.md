@@ -250,7 +250,7 @@ sin excepción no controlada, y el ciclo siguiente continuó con
 normalidad. Una vez corregido `MaxSize=5` en el ASG, las corridas
 documentadas en 3.1 y 3.2 se completaron sin este error.
  
-### 3.5 Series de tiempo
+### 3.4 Series de tiempo
  
 Comparar en CloudWatch (Metrics → EC2 → By Auto Scaling Group →
 `CPUUtilization`, period 1 min) contra los timestamps de las tablas
