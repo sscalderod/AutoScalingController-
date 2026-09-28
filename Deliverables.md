@@ -329,3 +329,31 @@ del rango permitido 1-5).
   de solo reaccionar.
 
 ---
+
+## 5. Respuesta Preguntas
+
+### 1. ¿Las métricas seleccionadas representan bien el sistema? ¿Qué no capturan?
+CPU representa la saturación de cómputo, la causa más común de degradación. No captura latencia, errores HTTP, memoria, I/O ni profundidad de cola.
+
+### 2. ¿Cuánto tarda en haber capacidad adicional tras detectar sobrecarga?
+~5-6.5 min: 180s de confirmación (3 ciclos) + 60-120s de boot de la instancia + 60-90s de health check en el ALB.
+
+### 3. ¿Cómo distingue un pico transitorio de un cambio sostenido?
+Con streaks consecutivos: necesita 3 ciclos altos seguidos (o 5 bajos) para actuar. Cualquier lectura en zona neutral (30-70%) resetea el contador a cero.
+
+### 4. ¿Qué evita oscilación (subir y bajar repetidamente)?
+Cooldown de 180s tras cada acción + umbrales asimétricos con banda neutral de 40 puntos (30-70%).
+
+### 5. ¿Qué pasa si falla una medición o una acción?
+Métrica ausente: no actúa, mantiene capacidad y lo registra. Acción fallida (ej. error de AWS): se captura, se loguea, y el loop sigue sin caerse.
+
+### 6. ¿Cuándo tomó una decisión incorrecta o tardía?
+Bug 1: estrés muy corto (90s) nunca completaba el streak, nunca escalaba. Bug 2: el fallback interrumpía streaks legítimos, causando oscilación indefinida. Ambos corregidos.
+
+### 7. ¿Cuál fue el costo de recursos por mantener el SLO?
+Máximo 2 instancias (de 5 permitidas), 1 instancia extra durante ~34 minutos (16:54:37 a 17:28:41 UTC).
+
+### 8. ¿Cómo comparar dos controllers con el mismo SLO?
+Es mejor el que usa menos instancias-hora y menos transiciones de capacidad. Se demuestra corriendo ambos con la misma carga y comparando esas dos métricas del log de decisiones.
+
+---
